@@ -12,3 +12,29 @@ document.addEventListener("DOMContentLoaded", function () {
     square.classList.add("square", classNames[i]);
   }
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+  var board = document.getElementById("board");
+  var squares = board.getElementsByClassName("square");
+  var currentPlayer = "X"; // Start with "X"
+  var gameBoard = ["", "", "", "", "", "", "", "", ""]; // Initialize an empty game board
+
+  for (var i = 0; i < squares.length; i++) {
+    squares[i].addEventListener("click", function () {
+      var square = this;
+
+      // Check if the square is empty (not already marked)
+      if (square.textContent === "") {
+        // Update the square with the current player (X or O)
+        square.textContent = currentPlayer;
+        square.classList.add(currentPlayer);
+
+        // Update the game state array
+        gameBoard[i] = currentPlayer;
+
+        // Toggle the current player
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+      }
+    });
+  }
+});
